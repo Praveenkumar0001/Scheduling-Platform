@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model User {
+  id            String         @id @default(cuid())
+  username      String         @unique
+  email         String         @unique
+  name          String
+  timezone      String         @default("UTC")
+  bufferTime    Int            @default(0) // Buffer time in minutes between meetings
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  
+  eventTypes    EventType[]
+  availabilities Availability[]
+  bookings      Booking[]
+  dateOverrides DateOverride[]
+}
+
+model EventType {
+  id                String    @id @default(cuid())
+  title             String
+  slug              String
+  description       String?
+  duration          Int       // in minutes
+  color             String    @default("#000000")
+  isActive          Boolean   @default(true)
+  bufferTime        Int       @default(0) // Event-specific buffer time
+  customQuestions   Json?     // Array of custom questions
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  bookings          Booking[]
+  
+  @@unique([userId, slug])
+}
+
+model Availability {
+  id          String   @id @default(cuid())
+  dayOfWeek   Int      // 0-6 (Sunday to Saturday)
+  startTime   String   // Format: "HH:MM"
+  endTime     String   // Format: "HH:MM"
+  scheduleName String  @default("Default") // For multiple schedules
+  isDefault   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DateOverride {
+  id          String   @id @default(cuid())
+  date        DateTime // Specific date for override
+  isAvailable Boolean  @default(false) // Block date or make available
+  startTime   String?  // Custom start time for this date
+  endTime     String?  // Custom end time for this date
+  reason      String?  // Optional reason for override
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Booking {
+  id              String   @id @default(cuid())
+  startTime       DateTime
+  endTime         DateTime
+  attendeeName    String
+  attendeeEmail   String
+  attendeeNotes   String?
+  customResponses Json?    // Responses to custom questions
+  status          String   @default("confirmed") // confirmed, cancelled, rescheduled
+  rescheduleToken String?  @unique // Token for rescheduling
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  eventTypeId     String
+  eventType       EventType @relation(fields: [eventTypeId], references: [id], onDelete: Cascade)
+}
