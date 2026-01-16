@@ -910,9 +910,9 @@ export default function Home() {
             </div>
 
             <div className="relative w-full overflow-hidden">
-              <div className="flex animate-testimonial-scroll-smooth items-center" style={{ width: 'max-content' }}>
+              <div className="flex animate-testimonial-scroll-smooth items-center gap-8" style={{ width: 'max-content' }}>
                 {/* First set */}
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-8 mr-8">
                   {/* Card 1 */}
                   <div className="flex-shrink-0" style={{ width: '500px' }}>
                     <Card className="border border-gray-200 shadow-lg bg-white rounded-2xl transition-all duration-300 hover:shadow-xl">
@@ -987,7 +987,7 @@ export default function Home() {
                 </div>
                 
                 {/* Duplicate set for seamless loop */}
-                <div className="flex items-center gap-8">
+                <div className="flex items-center gap-8 mr-8">
                   {/* Card 1 */}
                   <div className="flex-shrink-0" style={{ width: '500px' }}>
                     <Card className="border border-gray-200 shadow-lg bg-white rounded-2xl transition-all duration-300 hover:shadow-xl">

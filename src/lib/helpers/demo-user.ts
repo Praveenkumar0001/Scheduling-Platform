@@ -7,13 +7,13 @@ export async function getDemoUserId(): Promise<string> {
     return cachedDemoUserId;
   }
 
-  const demoUser = await prisma.user.findUnique({
-    where: { email: "demo@example.com" },
+  const demoUser = await prisma.user.findFirst({
     select: { id: true },
+    orderBy: { createdAt: 'asc' },
   });
 
   if (!demoUser) {
-    throw new Error("Demo user not found. Please run: npm run db:seed");
+    throw new Error("No users found in database. Please run: npx prisma db seed");
   }
 
   cachedDemoUserId = demoUser.id;

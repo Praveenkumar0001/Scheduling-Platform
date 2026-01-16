@@ -85,7 +85,7 @@
 }
 
 .animate-testimonial-scroll-smooth {
-  animation: testimonial-scroll-smooth 1.5s linear infinite;
+  animation: testimonial-scroll-smooth 40s linear infinite;
 }
 
 .animate-testimonial-scroll-smooth:hover {
