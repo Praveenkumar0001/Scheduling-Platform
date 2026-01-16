@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export default function AppearancePage() {
   const [dashboardTheme, setDashboardTheme] = useState("system");
   const [bookingTheme, setBookingTheme] = useState("system");

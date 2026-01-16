@@ -3,6 +3,9 @@ import prisma from "@/lib/prisma";
 import { startOfDay, endOfDay, addMinutes } from "date-fns";
 import { getDemoUserId } from "@/lib/helpers/demo-user";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // GET available time slots for a specific date
 export async function GET(request: NextRequest) {
   try {
