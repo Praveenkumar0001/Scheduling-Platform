@@ -5,13 +5,13 @@ const prisma = new PrismaClient()
 async function main() {
   // Create a demo user
   const user = await prisma.user.upsert({
-    where: { email: 'praveenkumar01.iitism@gmail.com' },
+    where: { email: 'demo@example.com' },
     update: {},
     create: {
-      email: 'praveenkumar01.iitism@gmail.com',
-      username: 'praveen-kumar-kp9ja6',
-      name: 'Praveen Kumar',
-      timezone: 'Asia/Calcutta',
+      email: 'demo@example.com',
+      username: 'demo-user',
+      name: 'Demo User',
+      timezone: 'UTC',
     },
   })
 
