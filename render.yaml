@@ -1,0 +1,36 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: scheduling-platform-db
+    plan: free
+    databaseName: scheduling_db
+    databaseUser: scheduling_user
+
+  # Web Service
+  - type: web
+    name: scheduling-platform
+    runtime: node
+    plan: free
+    buildCommand: npm install --legacy-peer-deps && npx prisma generate && npx prisma migrate deploy && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: scheduling-platform-db
+          property: connectionString
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        generateValue: true
+      - key: EMAIL_FROM
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
