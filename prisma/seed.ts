@@ -5,13 +5,13 @@ const prisma = new PrismaClient()
 async function main() {
   // Create a demo user
   const user = await prisma.user.upsert({
-    where: { email: 'demo@example.com' },
+    where: { email: 'praveenkumar01.iitism@gmail.com' },
     update: {},
     create: {
-      email: 'demo@example.com',
-      username: 'demo',
-      name: 'Demo User',
-      timezone: 'America/New_York',
+      email: 'praveenkumar01.iitism@gmail.com',
+      username: 'praveen-kumar-kp9ja6',
+      name: 'Praveen Kumar',
+      timezone: 'Asia/Calcutta',
     },
   })
 
@@ -19,32 +19,48 @@ async function main() {
 
   // Create sample event types
   const eventType1 = await prisma.eventType.upsert({
-    where: { userId_slug: { userId: user.id, slug: '30-min-meeting' } },
+    where: { userId_slug: { userId: user.id, slug: 'secret' } },
     update: {},
     create: {
-      title: '30 Minute Meeting',
-      slug: '30-min-meeting',
-      description: 'A quick 30-minute meeting',
-      duration: 30,
+      title: 'Secret meeting',
+      slug: 'secret',
+      description: 'A private 15-minute meeting',
+      duration: 15,
       color: '#3b82f6',
+      isActive: false,
       userId: user.id,
     },
   })
 
   const eventType2 = await prisma.eventType.upsert({
-    where: { userId_slug: { userId: user.id, slug: '60-min-consultation' } },
+    where: { userId_slug: { userId: user.id, slug: '30min' } },
     update: {},
     create: {
-      title: '60 Minute Consultation',
-      slug: '60-min-consultation',
-      description: 'An hour-long consultation session',
-      duration: 60,
+      title: '30 min meeting',
+      slug: '30min',
+      description: 'A standard 30-minute meeting',
+      duration: 30,
       color: '#10b981',
+      isActive: true,
       userId: user.id,
     },
   })
 
-  console.log('Created event types:', { eventType1, eventType2 })
+  const eventType3 = await prisma.eventType.upsert({
+    where: { userId_slug: { userId: user.id, slug: '15min' } },
+    update: {},
+    create: {
+      title: '15 min meeting',
+      slug: '15min',
+      description: 'A quick 15-minute catch-up',
+      duration: 15,
+      color: '#f59e0b',
+      isActive: true,
+      userId: user.id,
+    },
+  })
+
+  console.log('Created event types:', { eventType1, eventType2, eventType3 })
 
   // Create default availability (Monday-Friday, 9 AM - 5 PM)
   const availabilities = []

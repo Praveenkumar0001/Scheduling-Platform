@@ -70,7 +70,7 @@ export default function CancelBookingDialog({
         </DialogHeader>
         <DialogFooter>
           <Button
-            variant="outline"
+            className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500"
             onClick={() => onOpenChange(false)}
             disabled={loading}
           >

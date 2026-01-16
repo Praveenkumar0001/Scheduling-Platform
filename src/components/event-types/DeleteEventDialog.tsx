@@ -64,7 +64,7 @@ export default function DeleteEventDialog({ eventTypeId }: DeleteEventDialogProp
           {loading ? "Deleting..." : "Delete Event Type"}
         </Button>
         <Button
-          variant="outline"
+          className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500"
           onClick={() => router.push("/event-types")}
         >
           Cancel

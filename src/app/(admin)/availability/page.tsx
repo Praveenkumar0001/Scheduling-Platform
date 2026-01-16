@@ -7,8 +7,8 @@ export default function AvailabilityPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Availability</h1>
-          <p className="text-muted-foreground">View your current availability settings</p>
+          <h1 className="text-3xl font-bold text-white">Availability</h1>
+          <p className="text-gray-400">View your current availability settings</p>
         </div>
         <Button asChild>
           <Link href="/availability/edit">Edit Availability</Link>
@@ -22,7 +22,7 @@ export default function AvailabilityPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="text-muted-foreground">Configure your availability to set when others can book time with you.</p>
+            <p className="text-gray-400">Configure your availability to set when others can book time with you.</p>
           </div>
         </CardContent>
       </Card>

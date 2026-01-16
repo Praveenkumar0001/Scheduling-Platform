@@ -76,9 +76,8 @@ export default function BookingCard({
 
           {status === "confirmed" && (
             <Button 
-              variant="outline" 
+              className="w-full mt-4 bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500"
               size="sm" 
-              className="w-full mt-4"
               onClick={() => setShowCancelDialog(true)}
             >
               Cancel Booking

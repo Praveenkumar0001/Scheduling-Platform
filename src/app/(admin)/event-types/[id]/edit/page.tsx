@@ -5,8 +5,8 @@ export default function EditEventTypePage({ params }: { params: { id: string } }
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Edit Event Type</h1>
-        <p className="text-muted-foreground">Update your event type settings</p>
+        <h1 className="text-3xl font-bold text-white">Edit Event Type</h1>
+        <p className="text-gray-400">Update your event type settings</p>
       </div>
 
       <Card>

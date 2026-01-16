@@ -6,8 +6,8 @@ export default function BookingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Bookings</h1>
-        <p className="text-muted-foreground">View and manage all your appointments</p>
+        <h1 className="text-3xl font-bold text-white">Bookings</h1>
+        <p className="text-gray-400">View and manage all your appointments</p>
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">

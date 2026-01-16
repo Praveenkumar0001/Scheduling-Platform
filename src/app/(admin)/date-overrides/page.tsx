@@ -68,8 +68,8 @@ export default function DateOverridesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Date Overrides</h1>
-        <p className="text-muted-foreground">
+        <h1 className="text-3xl font-bold text-white">Date Overrides</h1>
+        <p className="text-gray-400">
           Block specific dates or set custom hours
         </p>
       </div>

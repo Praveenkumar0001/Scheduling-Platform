@@ -1,6 +1,5 @@
 const express = require('express');
 const next = require('next');
-const cors = require('cors');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -11,20 +10,16 @@ const PORT = process.env.PORT || 3000;
 app.prepare().then(() => {
   const server = express();
 
-  // Middleware
-  server.use(cors());
-  server.use(express.json());
-  server.use(express.urlencoded({ extended: true }));
-
-  // API Routes will still be handled by Next.js API routes
-  // but they're now served through Express.js
-  
   // Health check endpoint
   server.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', backend: 'Express.js with Node.js', timestamp: new Date().toISOString() });
+    res.json({ 
+      status: 'ok', 
+      backend: 'Express.js with Node.js', 
+      timestamp: new Date().toISOString() 
+    });
   });
 
-  // Handle all other routes with Next.js
+  // Handle all other routes with Next.js (no middleware that touches the body)
   server.use((req, res) => {
     return handle(req, res);
   });

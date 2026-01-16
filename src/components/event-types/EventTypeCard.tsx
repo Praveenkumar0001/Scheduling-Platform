@@ -63,13 +63,13 @@ export default function EventTypeCard({
         </div>
 
         <div className="flex gap-2">
-          <Button asChild variant="outline" size="sm">
+          <Button asChild className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500" size="sm">
             <Link href={`/event-types/${id}/edit`}>
               <Edit className="h-4 w-4 mr-2" />
               Edit
             </Link>
           </Button>
-          <Button asChild variant="outline" size="sm">
+          <Button asChild className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500" size="sm">
             <Link href={`/event-types/${id}/delete`}>
               <Trash2 className="h-4 w-4 mr-2" />
               Delete

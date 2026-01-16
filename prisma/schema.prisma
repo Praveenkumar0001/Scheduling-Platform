@@ -26,6 +26,7 @@ model User {
   availabilities Availability[]
   bookings      Booking[]
   dateOverrides DateOverride[]
+  outOfOffice   OutOfOffice[]
 }
 
 model EventType {
@@ -95,4 +96,19 @@ model Booking {
   
   eventTypeId     String
   eventType       EventType @relation(fields: [eventTypeId], references: [id], onDelete: Cascade)
+}
+
+model OutOfOffice {
+  id              String   @id @default(cuid())
+  title           String   // e.g., "Vacation", "Holiday", "Conference"
+  startDate       DateTime
+  endDate         DateTime
+  isAllDay        Boolean  @default(true)
+  notes           String?  // Optional notes about the out of office
+  redirectUserId  String?  // Optional: Forward bookings to another user
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

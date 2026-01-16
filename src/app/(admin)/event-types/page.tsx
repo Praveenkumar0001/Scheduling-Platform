@@ -8,8 +8,8 @@ export default function EventTypesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Event Types</h1>
-          <p className="text-muted-foreground">Manage your event types and scheduling options</p>
+          <h1 className="text-3xl font-bold text-white">Event Types</h1>
+          <p className="text-gray-400">Manage your event types and scheduling options</p>
         </div>
         <Button asChild>
           <Link href="/event-types/new">

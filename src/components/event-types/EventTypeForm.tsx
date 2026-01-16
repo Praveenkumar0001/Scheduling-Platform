@@ -205,7 +205,7 @@ export default function EventTypeForm({ eventTypeId }: EventTypeFormProps) {
               Ask additional questions when booking
             </p>
           </div>
-          <Button type="button" variant="outline" size="sm" onClick={addCustomQuestion}>
+          <Button type="button" className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500" size="sm" onClick={addCustomQuestion}>
             Add Question
           </Button>
         </div>
@@ -258,7 +258,7 @@ export default function EventTypeForm({ eventTypeId }: EventTypeFormProps) {
         </Button>
         <Button
           type="button"
-          variant="outline"
+          className="bg-gray-800 border border-gray-600 text-white hover:bg-gray-700 hover:border-gray-500"
           onClick={() => router.push("/event-types")}
         >
           Cancel

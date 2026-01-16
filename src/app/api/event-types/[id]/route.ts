@@ -31,16 +31,17 @@ export async function PUT(
     const body = await request.json();
     const { title, slug, description, duration, color, isActive } = body;
 
+    const updateData: any = {};
+    if (title !== undefined) updateData.title = title;
+    if (slug !== undefined) updateData.slug = slug;
+    if (description !== undefined) updateData.description = description;
+    if (duration !== undefined) updateData.duration = parseInt(duration);
+    if (color !== undefined) updateData.color = color;
+    if (isActive !== undefined) updateData.isActive = isActive;
+
     const eventType = await prisma.eventType.update({
       where: { id: params.id },
-      data: {
-        title,
-        slug,
-        description,
-        duration: parseInt(duration),
-        color,
-        isActive,
-      },
+      data: updateData,
     });
 
     return NextResponse.json(eventType);
